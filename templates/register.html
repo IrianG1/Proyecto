@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Bienvenido</title>
 </head>
 
@@ -22,7 +23,7 @@
                 <button class="sign-up-btn">Iniciar Sesion</button>
             </div>
         </div>
-        <form class="formulario">
+        <form class="formulario" method="post" action="/register">
             <h2 class="create-account">Crear una cuenta</h2>
             <div class="iconos">
                 <div class="border-icon">
@@ -36,14 +37,15 @@
                 </div>
             </div>
             <p class="cuenta-gratis"> </p>
-            <input type="text" placeholder="Nombre">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Contraseña">
-            <input type="button" value="Registrarse">
+            <input type="text" name="name" placeholder="Nombre">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Contraseña">
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Default</button>
+            
         </form>
     </div>
     <div class="container-form sign-in">
-        <form class="formulario">
+        <form class="formulario" method="post" action="/login">
             <h2 class="create-account">Iniciar Sesion</h2>
             <div class="iconos">
                 <div class="border-icon">
@@ -57,9 +59,9 @@
                 </div>
             </div>
             <p class="cuenta-gratis">¿Aun no tienes una cuenta?</p>
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Contraseña">
-            <input type="button" value="Iniciar Sesion">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Contraseña">
+            <input type="submit" value="Iniciar Sesion">
         </form>
         <div class="welcome-back">
             <div class="message">

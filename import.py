@@ -12,9 +12,10 @@ def main():
     f = open("books.csv")
     reader = csv.reader(f)
     for isbn, title, author, year in reader:
+        print(f"{isbn} {title} {author} {year}")
         consulta = text("INSERT INTO books (isbn, title, author, year) VALUES (:isbn, :title, :author, :year)")
         db.execute(consulta, {"isbn": isbn, "title": title, "author": author, "year": year})
-        print(consulta)
+       
         
     db.commit()
     
