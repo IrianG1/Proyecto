@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>buscador</title>
+</head>
+<style>
+    html {
+        height: 100%;
+    }
+
+    .box-out {
+        z-index: -99;
+        width: 720px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 140px;
+    }
+
+    .box-inner {
+        /* display: none; */
+        z-index: 99;
+        width: 900px;
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+        position: absolute;
+        top: 350px;
+        overflow: hidden;
+        background-color: #fff;
+    }
+
+    .book {
+        width: 180px;
+        height: 255px;
+        background-color: rgb(62, 71, 152);
+        transition: all .3s ease-in-out;
+        transform-origin: left center 0px;
+        transform-style: preserve-3d;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        -webkit-backface-visibility: hidden;
+        overflow: hidden;
+    }
+
+    .box-out .book::after {
+        content: " ";
+        display: block;
+        opacity: 0;
+        width: 180px;
+        height: 255px;
+        position: relative;
+        left: 8px;
+        transition: all .3s ease;
+    }
+
+    .box-out .book::before {
+        content: " ";
+        z-index: 999;
+        display: block;
+        width: 20px;
+        height: 100px;
+        opacity: 0;
+        position: absolute;
+        top: -12px;
+        right: 8px;
+        transition: all .25s;
+        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAABhCAYAAABh23lYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHCSURBVHgB7dxPTsJAHMXxN7Xu3UhigobxJHACvQFwAr2BcgO8AZxE7uGiDZiQyEIW7oSOUyKbKgLS8u+9b9JNF818fum0XdWUhy9VEDZBGIdBGD6DsFM3bQYgTnjWhGdNeNaEZ0141oRnTXjWhGdNeNaEZ0141oRnTXjWhGdNeNaEZ0141oRnTXjWhGdNeNaEZ0141oRnTXjWhGdNeNaEZ0141oRnTXjWhGdNeNaEZ0141oRnTXjWhGdNeNZ2hR/7o+UcmnCIsaNCbLcU/RR8oB1bO/4+17l8ixoGeIBBBVvMXI0ih+L7Df2j8iiqnvgh+AVVUXDOTZvF4tNb2qC7DJ1tNgSDO78tblFQxeE92l+0NSjZDjaoMowqyYl7hDF15JzL+x+YHtxLgFq/ZO2m8LT4wsb90nUjmMD61XaRc7ng5+jBua29ntsecq6oIWyELxqdLe8h/GvPp+h0T28D/FezZ8Ip7pHgZt3X5NoPvH1BZ5sNIUTDL7C+6hBWxxt0gk+00tsOe96qH0zL8GO4pBtMg/YhoLMtG8Ii/EpfY4fSoiFk8UeFzpYdwhz/jiNGZ0uHEBjUEzftohJFZyAsdX8BM0/amLC3spYAAAAASUVORK5CYII=');
+        background-size: 16px;
+        background-repeat: no-repeat;
+    }
+
+    /*------ background-pic ------*/
+
+    .books-1 {
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/945546/3433202-d2a1bea8a58cd447.png');
+        background-size: 180px 255px;
+    }
+
+    .books-2 {
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/945546/3433202-6b51313cfc447314.png');
+        background-size: 180px 255px;
+    }
+
+    .books-3 {
+        background: url('https://upload-images.jianshu.io/upload_images/3433202-564e196e8b409f16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240');
+        background-size: 180px 255px;
+    }
+
+    /* ----- book-blur ----- */
+
+    .book-blur {
+        filter: blur(30px)
+    }
+
+    .box-inner .book {
+        margin-left: 90px;
+        position: relative;
+        top: -194px;
+    }
+
+    /* ----- hover ----- */
+
+    .book:hover {
+        cursor: pointer;
+        transform: rotateY(-28deg) rotateZ(-2deg) scale(1.02);
+        -webkit-backface-visibility: hidden;
+        box-shadow: 1px 3px 2px #353d85, 20px 8px 0 #525dc4;
+        /* transform: scale(1.02); */
+    }
+
+    .book:hover::after {
+        content: " ";
+        display: block;
+        opacity: 1;
+        width: 172px;
+        height: 255px;
+        position: relative;
+        left: 8px;
+        background: linear-gradient(-180deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, 0) 60%);
+    }
+
+    .book:hover::before {
+        transform: translateY(9px);
+        opacity: 1;
+
+    }
+
+    .dr {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        width: 100px;
+    }
+
+    .comments-container {
+        width: 400px;
+
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    #comments-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .comment {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    #comment-input {
+        width: 100%;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+
+
+    #comment-form button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-body" href="/home">Books</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-body" href="#">Usuario: {{name}}</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-body" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Opciones
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href=""></a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="box-inner d-flex justify-content-center" style="margin-top: 15%; margin-bottom: 25%;">
+                <div class="col-4 ">
+                    <div class="comments-container">
+                        <h2>Comentarios:</h2>
+
+                        <form id="comment-form">
+                            <input id="isbn" type="text" value="{{isbn}}" hidden>
+                            <input id="nombre-user" type="text" value="{{user_id}}" hidden>
+                            <textarea id="comment-input" placeholder="Escribe un comentario"></textarea>
+                            <button type="submit" class="btn btn-primary">Comentar</button>
+                        </form>
+                        <ul id="comments-list" class="mt-5">
+                            <!-- Los comentarios se agregarán dinámicamente con JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="box-out">
+                <div class="col-5 d-flex justify-content-start">
+                    <img src="{{img}}" class="book" alt="">
+                </div>
+                <div class="col-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{title}}</h5>
+                            <p class="card-text">{{descripcion}}</p>
+                            <p class="card-text"><small class="text-body-secondary">Author: {{author}}</small></p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+      
+        fetch('/libro/enviar/{{isbn}}')
+            .then(response => response.json())
+            .then(data => {
+                // data is a parsed JSON object
+                data.forEach(element => {
+                    console.log(element)
+                    var commentElement = document.createElement('li');
+                    commentElement.className = 'comment';
+                    commentElement.textContent = element["name"]+": "+ element["comment"];
+
+                    document.getElementById('comments-list').appendChild(commentElement);
+                });
+               
+            })
+
+
+
+        document.getElementById('comment-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
+
+            var commentInput = document.getElementById('comment-input');
+            var nombre = document.getElementById('nombre-user').value.trim();
+            var isbn = document.getElementById('isbn').value.trim();
+            var commentText = commentInput.value.trim();
+
+            if (commentText !== '') {
+                var commentElement = document.createElement('li');
+                commentElement.className = 'comment';
+                commentElement.textContent = nombre + ": " + commentText;
+
+                document.getElementById('comments-list').appendChild(commentElement);
+                commentInput.value = '';
+                var datos = {
+                    'isbn': isbn,
+                    'user_id': nombre,
+                    'comentario': commentText
+                };
+
+                fetch('/datos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datos)
+                })
+                    .then(function (response) {
+                        // Manejar la respuesta de Flask aquí
+                        console.log('Datos enviados correctamente');
+                    })
+                    .catch(function (error) {
+                        console.error('Error al enviar los datos:', error);
+                    });
+
+
+            }
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

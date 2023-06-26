@@ -1,68 +1,163 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="/static/styles.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col">
-                <form action="/home" method="post">
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Search Books</label>
-                      <input type="text" name="buscar" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      <div id="emailHelp" class="form-text">A BUSCAR.</div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                  </form>
+  <title>Hello, world!</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand text-body" href="/home">Books</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-body" href="#">Usuario: {{name}}</a>
+          </li>
+  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-body" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Opciones
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href=""></a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <a class="dropdown-item" href="/logout">Logout</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+  {% if rows %}
+
+  {% else %}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="polka">
+
+        <div class="wrap book3">
+          <div class="cover">
+            <div class="cover-spine">
+              <p class="cover-spine-text">
+                Николай Гоголь
+                <i></i>
+                <big>Мертвые души</big>
+              </p>
             </div>
+            <div class="cover-face"></div>
+          </div>
         </div>
+
+        <div class="wrap book2">
+          <div class="cover">
+            <div class="cover-spine">
+              <p class="cover-spine-text">
+                Экзюпери
+                <i></i>
+                <big>Цитадель</big>
+              </p>
+            </div>
+            <div class="cover-face"></div>
+          </div>
+        </div>
+
+        <div class="wrap book1">
+          <div class="cover">
+            <div class="cover-spine">
+              <p class="cover-spine-text">
+                Нассим Николас Талеб
+                <i></i>
+                <big>Черный лебедь</big>
+              </p>
+            </div>
+            <div class="cover-face"></div>
+          </div>
+        </div>
+
+        <div class="wrap book0">
+          <div class="cover">
+            <div class="cover-spine">
+              <p class="cover-spine-text">
+                Яна Франк
+                <i></i>
+                <big>Дневник дизайнера-маньяка</big>
+              </p>
+            </div>
+            <div class="cover-face"></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  {% endif%}
 
-    <div class="container mt-5">
-        <div class="row">
-        {% if longitud > 0 %}
-            {% for row in rows%}
-                    <div class="col-4 mb-5">
-                        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <a href="#">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                            </a>
-                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                            <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Read more
-                                <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            </a>
-                        </div>  
-                    </div>   
-                
-            {%endfor%}
-        {% else %}
-            <H1> nada prix</H1>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <form action="/home" method="post">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Search Books</label>
+            <input type="text" name="buscar" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">A BUSCAR.</div>
+          </div>
 
-        {% endif %}
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+      </div>
     </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row">
+      {% if rows %}
+      {% for row in rows%}
+      <div class="card mb-5 me-2" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{row.title}}</h5>
+          <p class="card-text">Creado por {{row.author}} en el año {{row.year}}.</p>
+          <a href="{{ url_for('libro', id=row.isbn) }}" class="btn btn-primary">Visitar libro</a>
+        </div>
+      </div>
+
+      {%endfor%}
+      {% else %}
+      <H1>No hay busquedas aun</H1>
+
+      {% endif %}
     </div>
-    
-    <!-- Optional JavaScript; choose one of the two! -->
+  </div>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-  </body>
+</body>
+
 </html>
